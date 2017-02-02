@@ -73,3 +73,7 @@ export const employeeDelete = ({ uid }) => {
       });
   };
 };
+
+export const employeeClear = () => {
+  return ({ type: EMPLOYEE_SAVE_SUCCESS });
+};

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { text } from 'react-native-communications';
 
 import EmployeeForm from './EmployeeForm';
-import { employeeUpdate, employeeSave, employeeDelete } from '../actions';
+import { employeeUpdate, employeeSave, employeeDelete, employeeClear } from '../actions';
 import { Card, CardSection, Button, Confirm } from './common';
 
 class EmployeeEdit extends Component {
@@ -14,6 +14,10 @@ class EmployeeEdit extends Component {
     _.each(this.props.employee, (value, prop) => {
       this.props.employeeUpdate({ prop, value });
     });
+  }
+
+  componentWillUnmount() {
+    this.props.employeeClear();
   }
 
   onButtonPress() {
@@ -82,5 +86,6 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, {
   employeeUpdate,
   employeeSave,
-  employeeDelete
+  employeeDelete,
+  employeeClear
 })(EmployeeEdit);
